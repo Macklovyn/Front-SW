@@ -61,7 +61,7 @@
           </svg>
           <input
             class="pl-2 outline-none border-none"
-            type="text"
+            type="password"
             v-model="password"
           />
         </div>

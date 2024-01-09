@@ -1,51 +1,140 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
-      <h1 class="text-2xl font-bold mb-6">Iniciar Sesión</h1>
+  <!-- component -->
+  <div class="h-screen md:flex">
+    <div
+      class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden"
+    >
+      <div>
+        <h1 class="text-white font-bold text-4xl font-sans">Bienes Raices</h1>
+      </div>
+      <div
+        class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"
+      ></div>
+      <div
+        class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"
+      ></div>
+      <div
+        class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"
+      ></div>
+      <div
+        class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"
+      ></div>
+    </div>
+    <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
+      <form class="bg-white" @submit.prevent="register">
+        <h1 class="text-gray-800 font-bold text-2xl mb-1">Registro de Usuario</h1>
+        <p class="text-sm font-normal text-gray-600 mb-7">Crea tu cuenta</p>
 
-      <!-- Formulario de inicio de sesión -->
-      <form>
-        <!-- Campos del formulario (por ejemplo, email y contraseña) -->
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700 text-sm font-bold mb-2"
-            >Correo Electrónico</label
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+            />
+          </svg>
           <input
-            type="email"
-            id="email"
-            name="email"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+            class="pl-2 outline-none border-none"
+            type="text"
+            v-model="name"
+            placeholder="Nombre"
           />
         </div>
 
-        <div class="mb-4">
-          <label
-            for="password"
-            class="block text-gray-700 text-sm font-bold mb-2"
-            >Contraseña</label
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-gray-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
           >
+            <path
+              fill-rule="evenodd"
+              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
           <input
+            class="pl-2 outline-none border-none"
+            type="text"
+            v-model="email"
+            placeholder="Correo Electrónico"
+          />
+        </div>
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-gray-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            class="pl-2 outline-none border-none"
             type="password"
-            id="password"
-            name="password"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+            v-model="password"
+            placeholder="Contraseña"
           />
         </div>
 
-        <!-- Botón de inicio de sesión -->
+        <!-- Botón de registro -->
         <button
-          type="submit"
-          class="w-full bg-blue-500 text-white px-4 py-2 rounded-md"
+          @click="register"
+          class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
         >
-          Iniciar Sesión
+          Registrarse
         </button>
+        <nuxt-link
+          to="/auth/login"
+          class="text-sm ml-2 hover:text-blue-500 cursor-pointer"
+        >
+          ¿Ya tienes una cuenta? Inicia sesión aquí
+        </nuxt-link>
       </form>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import axios from "axios";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-<style scoped>
-/* Agrega estilos adicionales si es necesario */
-</style>
+const name = ref("");
+const email = ref("");
+const password = ref("");
+const router = useRouter();
+
+const register = async () => {
+  const payload = {
+    name: name.value,
+    email: email.value,
+    password: password.value,
+  };
+
+  try {
+    const response = await axios.post("http://localhost:4000/api/register", payload);
+    alert(response.data.message);
+    // Puedes redirigir al usuario a la página de inicio de sesión o realizar otras acciones después del registro.
+  } catch (error) {
+    console.error(error);
+    alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+  }
+};
+
+useHead({
+  title: "Registro",
+});
+</script>

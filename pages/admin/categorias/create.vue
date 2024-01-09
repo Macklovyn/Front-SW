@@ -1,30 +1,29 @@
 <template>
-  <div class="bg-white rounded shadow-lg p-4 md:p-8 mb-6 mx-10 mt-5">
-    <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+  <div class="bg-white rounded shadow-lg p-6 md:p-10 mb-6 mx-10 mt-5">
+    <div class="grid gap-6 text-sm grid-cols-1 lg:grid-cols-3">
       <div class="text-gray-600">
-        <p class="font-medium text-lg">Crear Categoria</p>
+        <p class="font-medium text-lg">Crear Categoría</p>
       </div>
 
       <div class="lg:col-span-2">
-        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-          <div class="md:col-span-5">
-            <label for="full_name">Categoria</label>
+        <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
+          <div>
+            <label for="category_name" class="block text-sm font-medium text-gray-600">Nombre de la Categoría</label>
             <input
+              id="category_name"
               type="text"
-              class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
               v-model="name"
+              class="mt-1 p-3 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
-          <div class="md:col-span-5 text-right">
-            <div class="inline-flex items-end">
-              <button
-                @click="store()"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Crear
-              </button>
-            </div>
+          <div class="flex items-center justify-end">
+            <button
+              @click="store"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg"
+            >
+              Crear
+            </button>
           </div>
         </div>
       </div>
@@ -37,8 +36,9 @@ import axios from "axios";
 const name = ref("");
 const router = useRouter();
 const token = ref(localStorage.getItem("token"));
+
 const store = () => {
-  const playload = {
+  const payload = {
     name: name.value,
   };
 
@@ -48,8 +48,8 @@ const store = () => {
   };
 
   axios
-    .post("http://localhost:4000/api/categories", playload, { headers })
-    .then((result) => {
+    .post("http://localhost:4000/api/categories", payload, { headers })
+    .then(() => {
       router.push("/admin/categorias");
     });
 };
