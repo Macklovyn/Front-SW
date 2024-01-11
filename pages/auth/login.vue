@@ -94,7 +94,7 @@ const login = async () => {
   };
 
   try {
-    axios.post("http://localhost:4000/api/login", playload).then((result) => {
+    axios.post("https://api-proyectsw.onrender.com/api/login", playload).then((result) => {
       localStorage.setItem("sesion", true);
       localStorage.setItem("token", result.data.token);
       router.go(-1);

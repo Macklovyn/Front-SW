@@ -25,11 +25,11 @@ import PropertyCard from "@/components/PropertyCard.vue";
 const categorias = ref([]);
 const propiedades = ref([]);
 const getCategories = () => {
-  axios.get("http://localhost:4000/api/categories").then((result) => {
+  axios.get("https://api-proyectsw.onrender.com/api/categories").then((result) => {
     categorias.value = result.data;
   });
 
-  axios.get("http://localhost:4000/api/properties").then((result) => {
+  axios.get("https://api-proyectsw.onrender.com/api/properties").then((result) => {
     propiedades.value = result.data;
   });
 };

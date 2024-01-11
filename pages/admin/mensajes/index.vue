@@ -79,7 +79,7 @@ useHead({
 });
 
 const getCategorias = () => {
-  axios.get("http://localhost:4000/api/messages").then((result) => {
+  axios.get("https://api-proyectsw.onrender.com/api/messages").then((result) => {
     console.log(result);
     categorias.value = result.data;
   });
@@ -108,7 +108,7 @@ const ejecutarFuncionConfirmar = (id) => {
     Authorization: `Bearer ${token.value}`,
   };
   axios
-    .delete("http://localhost:4000/api/messages/" + id, { headers })
+    .delete("https://api-proyectsw.onrender.com/api/messages/" + id, { headers })
     .then((result) => {
       getCategorias();
     });
@@ -148,7 +148,7 @@ const ejecutarFuncionConValor = (valor) => {
   };
 
   axios
-    .post("http://localhost:4000/api/message/response", playload, { headers })
+    .post("https://api-proyectsw.onrender.com/api/message/response", playload, { headers })
     .then((result) => {
       getCategorias();
     });

@@ -1,5 +1,4 @@
 <template>
-  <!-- component -->
   <div class="h-screen md:flex">
     <div
       class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden"
@@ -89,8 +88,8 @@
           />
         </div>
 
-        <!-- Botón de registro -->
         <button
+          type="button"
           @click="register"
           class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
         >
@@ -125,9 +124,12 @@ const register = async () => {
   };
 
   try {
-    const response = await axios.post("http://localhost:4000/api/register", payload);
+    const response = await axios.post("https://api-proyectsw.onrender.com/api/register", payload);
     alert(response.data.message);
-    // Puedes redirigir al usuario a la página de inicio de sesión o realizar otras acciones después del registro.
+
+    name.value = "";
+    email.value = "";
+    password.value = "";
   } catch (error) {
     console.error(error);
     alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');

@@ -67,7 +67,7 @@ const categorias = ref([]);
 const token = ref(localStorage.getItem("token"));
 
 const getCategorias = () => {
-  axios.get("http://localhost:4000/api/categories")
+  axios.get("https://api-proyectsw.onrender.com/api/categories")
     .then((result) => {
       categorias.value = result.data;
     })
@@ -97,7 +97,7 @@ const ejecutarFuncionConfirmar = (id) => {
     Authorization: `Bearer ${token.value}`,
   };
 
-  axios.delete("http://localhost:4000/api/categories/" + id, { headers })
+  axios.delete("https://api-proyectsw.onrender.com/api/categories/" + id, { headers })
     .then((result) => {
       getCategorias();
     })

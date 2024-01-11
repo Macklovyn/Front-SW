@@ -97,7 +97,7 @@ useHead({
 });
 
 const getCategorias = () => {
-  axios.get("http://localhost:4000/api/properties").then((result) => {
+  axios.get("https://api-proyectsw.onrender.com/api/properties").then((result) => {
     categorias.value = result.data;
   });
 };
@@ -125,7 +125,7 @@ const ejecutarFuncionConfirmar = (id) => {
     Authorization: `Bearer ${token.value}`,
   };
   axios
-    .delete("http://localhost:4000/api/properties/" + id, { headers })
+    .delete("https://api-proyectsw.onrender.com/api/properties/" + id, { headers })
     .then((result) => {
       getCategorias();
     });

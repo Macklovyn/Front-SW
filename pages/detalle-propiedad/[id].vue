@@ -34,7 +34,7 @@
 const route = useRoute();
 
 const itemData = await $fetch(
-  `http://localhost:4000/api/properties/${route.params.id}`
+  `https://api-proyectsw.onrender.com/api/properties/${route.params.id}`
 );
 
 console.log(itemData);

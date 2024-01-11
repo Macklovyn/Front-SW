@@ -42,7 +42,7 @@ const token = ref(localStorage.getItem("token"));
 
 const getData = () => {
   axios
-    .get("http://localhost:4000/api/messages/" + route.params.id)
+    .get("https://api-proyectsw.onrender.com/api/messages/" + route.params.id)
     .then((result) => {
       name.value = result.data.name;
       idEdit.value = result.data.id;
@@ -59,7 +59,7 @@ const store = () => {
   };
 
   axios
-    .put("http://localhost:4000/api/categories/" + idEdit.value, playload, {
+    .put("https://api-proyectsw.onrender.com/api/categories/" + idEdit.value, playload, {
       headers,
     })
     .then((result) => {

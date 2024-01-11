@@ -107,7 +107,7 @@ const store = () => {
 
   axios
     .put(
-      "http://localhost:4000/api/properties/" + property.value.id,
+      "https://api-proyectsw.onrender.com/api/properties/" + property.value.id,
       property.value,
       { headers }
     )
@@ -118,7 +118,7 @@ const store = () => {
 
 const categorias = ref([]);
 const getCategorias = () => {
-  axios.get("http://localhost:4000/api/categories").then((result) => {
+  axios.get("https://api-proyectsw.onrender.com/api/categories").then((result) => {
     categorias.value = result.data;
   });
 };
@@ -126,7 +126,7 @@ getCategorias();
 const route = useRoute();
 const getProperty = () => {
   axios
-    .get("http://localhost:4000/api/properties/" + route.params.id)
+    .get("https://api-proyectsw.onrender.com/api/properties/" + route.params.id)
     .then((result) => {
       property.value = result.data;
     });

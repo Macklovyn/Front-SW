@@ -69,7 +69,7 @@ if (!localStorage.getItem("sesion")) {
 const route = useRoute();
 
 const itemData = await $fetch(
-  `http://localhost:4000/api/properties/${route.params.id}`
+  `https://api-proyectsw.onrender.com/api/properties/${route.params.id}`
 );
 
 console.log(itemData);
@@ -88,7 +88,7 @@ const mensaje = async () => {
     Authorization: `Bearer ${token.value}`,
   };
   axios
-    .post("http://localhost:4000/api/messages", playload, { headers })
+    .post("https://api-proyectsw.onrender.com/api/messages", playload, { headers })
     .then((result) => {
       if (result.data.status == 200) {
         router.push("/admin/");
