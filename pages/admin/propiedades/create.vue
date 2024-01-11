@@ -1,4 +1,5 @@
 <template>
+
   <div class="bg-white rounded shadow-lg p-4 md:p-8 mb-6 mx-10 mt-5">
     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
       <div class="text-gray-600">
@@ -84,5 +85,46 @@
       </div>
     </div>
   </div>
+  
 </template>
+
+
+<script setup>
+import axios from "axios";
+const property = ref({
+  categoryId: "",
+  name: "",
+  name: "",
+  city: "",
+  rooms: "",
+  bathrooms: "",
+  image: "",
+});
+const router = useRouter();
+const token = ref(localStorage.getItem("token"));
+const store = () => {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token.value}`,
+  };
+
+  axios
+    .post("https://api-proyectsw.onrender.com/api/properties", property.value, { headers })
+    .then((result) => {
+      router.push("/admin/propiedades");
+    });
+};
+
+const categorias = ref([]);
+const getCategorias = () => {
+  axios.get("https://api-proyectsw.onrender.com/api/categories").then((result) => {
+    categorias.value = result.data;
+  });
+};
+getCategorias();
+</script>
+
+
+
+
 
