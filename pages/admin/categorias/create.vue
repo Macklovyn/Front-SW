@@ -31,38 +31,4 @@
   </div>
 </template>
 
-<script setup>
-import axios from "axios";
-import { ref } from "vue";
-import { useRouter } from "vue-router";
 
-const name = ref("");
-const router = useRouter();
-const token = ref(localStorage.getItem("token") || "");
-
-const store = () => {
-  if (!name.value.trim()) {
-    console.error("El nombre de la categoría no puede estar vacío");
-    return;
-  }
-
-  const payload = {
-    name: name.value,
-  };
-
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token.value}`,
-  };
-
-  axios
-    .post("https://api-proyectsw.onrender.com/api/categories", payload, { headers })
-    .then(() => {
-      router.push("/admin/categorias");
-    })
-    .catch((error) => {
-      console.error("Error al crear la categoría:", error);
-      // Puedes manejar el error de otra manera, por ejemplo, mostrando un mensaje al usuario.
-    });
-};
-</script>
