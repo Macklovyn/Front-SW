@@ -86,37 +86,3 @@
   </div>
 </template>
 
-<script setup>
-import axios from "axios";
-const property = ref({
-  categoryId: "",
-  name: "",
-  name: "",
-  city: "",
-  rooms: "",
-  bathrooms: "",
-  image: "",
-});
-const router = useRouter();
-const token = ref(localStorage.getItem("token"));
-const store = () => {
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token.value}`,
-  };
-
-  axios
-    .post("https://api-proyectsw.onrender.com/api/properties", property.value, { headers })
-    .then((result) => {
-      router.push("/admin/propiedades");
-    });
-};
-
-const categorias = ref([]);
-const getCategorias = () => {
-  axios.get("https://api-proyectsw.onrender.com/api/categories").then((result) => {
-    categorias.value = result.data;
-  });
-};
-getCategorias();
-</script>

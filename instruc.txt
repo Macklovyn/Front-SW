@@ -1,0 +1,3 @@
+//instalar dependencias con npm install
+
+//ejecutar con npm run dev
